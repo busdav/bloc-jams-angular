@@ -2,6 +2,10 @@
     function SongPlayer() {
        var SongPlayer = {};
 
+       /**
+      * @desc holds currently playing Song
+      * @type {Object}
+      */
        var currentSong = null;
 
        /**
@@ -9,6 +13,7 @@
       * @type {Object}
       */
        var currentBuzzObject = null;
+
 
        /**
        * @function setSong
@@ -29,12 +34,26 @@
           currentSong = song;
        };
 
+       /**
+       * @function playSong
+       * @desc plays the passed song and sets song.playing to true
+       * @param {Object} song
+       */
+       var playSong = function(song) {
+         currentBuzzObject.play();
+         song.playing = true;
+       };
+
+       /**
+       * @function .play
+       * @desc plays appropriate song 
+       * @param {Object} song
+       */
         SongPlayer.play = function(song) {
           if (currentSong !== song) {
               setSong(song);
 
-              currentBuzzObject.play();
-              song.playing = true;
+              playSong(song);
 
 
           } else if (currentSong === song) {
@@ -44,6 +63,11 @@
            }
         };
 
+        /**
+        * @function .pause
+        * @desc pauses song
+        * @param {Object} song
+        */
       SongPlayer.pause = function(song) {
       currentBuzzObject.pause();
       song.playing = false;
