@@ -4,7 +4,7 @@
 
 
        /**
-       * @function getAlbum
+       * @function currentAlbum
        * @desc Returns appropriate album
        * @returns {Object} albumPicasso
        */
@@ -25,9 +25,7 @@
        */
        var setSong = function(song) {
           if (currentBuzzObject) {
-              stopSong(); // QUESTION
-              // currentBuzzObject.stop();
-              // SongPlayer.currentSong.playing = null;
+              stopSong(SongPlayer.currentSong);
           }
 
           currentBuzzObject = new buzz.sound(song.audioUrl, {
@@ -54,10 +52,9 @@
         * @function stopSong
         * @desc Stop the currently playing song and sets song.playing to false
         */
-        var stopSong = function() {
+        var stopSong = function(song) {
           currentBuzzObject.stop();
-          SongPlayer.currentSong.playing = null;
-          // QUESTION instruction was song.playing = null;
+          song.playing = null;
         };
 
 
@@ -80,7 +77,7 @@
        * @desc Active song object from list of songs
        * @type {Object}
        */
-        SongPlayer.currentSong = null; // QUESTION I deleted `var = `, because with it, it threw an error. correct? 
+        SongPlayer.currentSong = null;
 
 
        /**
@@ -123,9 +120,7 @@
             currentSongIndex--;
 
             if (currentSongIndex < 0) {
-              stopSong(); // QUESTION
-              // currentBuzzObject.stop();
-              // SongPlayer.currentSong.playing = null;
+              stopSong(SongPlayer.currentSong);
             } else {
                 var song = currentAlbum.songs[currentSongIndex];
                 setSong(song);
@@ -143,9 +138,7 @@
           currentSongIndex++;
 
           if (currentSongIndex > currentAlbum.songs.length - 1) {
-            stopSong(); // QUESTION
-            // currentBuzzObject.stop();
-            // SongPlayer.currentSong.playing = null;
+            stopSong(SongPlayer.currentSong); 
           } else {
               var song = currentAlbum.songs[currentSongIndex];
               setSong(song);
