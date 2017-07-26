@@ -21,7 +21,7 @@
           scope.value = 0;
           scope.max = 100;
 
-          var seekBar = $(element);
+          var seekBar = $(element); // `element` refers to <seek-bar></seek-bar>
 
           attributes.$observe('value', function(newValue) {
               scope.value = newValue;
