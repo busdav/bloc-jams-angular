@@ -6,7 +6,7 @@
        /**
        * @function currentAlbum
        * @desc Returns appropriate album
-       * @returns {Object} albumPicasso
+       * @returns {Object}
        */
        var currentAlbum = Fixtures.getAlbum();
 
